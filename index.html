@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bio-data - Anusha</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', Arial, sans-serif;
+            background: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        nav {
+            background: #222;
+            color: #fff;
+            padding: 1.5em 0;
+            text-align: center;
+        }
+        nav a {
+            color: #fff;
+            margin: 0 2em;
+            text-decoration: none;
+            font-weight: bold;
+            letter-spacing: 1px;
+            font-size: 1.1em;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            max-width: 900px;
+            margin: 2em auto;
+            background: #f9f7f2;
+            border-radius: 8px;
+            box-shadow: 0 6px 24px rgba(0,0,0,0.07);
+            overflow: hidden;
+            display: flex;
+            flex-direction: row;
+        }
+        .left {
+            background: #d1cdc7;
+            width: 34%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 2.5em 1em 2em 1em;
+        }
+        .right {
+            width: 66%;
+            padding: 2.5em 2em 2em 2em;
+            background: #f9f7f2;
+            box-sizing: border-box;
+        }
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 12px;
+            object-fit: cover;
+            margin-bottom: 2em;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.14);
+            border: 6px solid #fff;
+            background: #eee;
+        }
+        .name {
+            font-size: 2.4em;
+            font-weight: 700;
+            margin-bottom: 0.3em;
+            text-align: center;
+            letter-spacing: 1.5px;
+        }
+        .section-title {
+            font-weight: 700;
+            font-size: 1.1em;
+            letter-spacing: 1px;
+            margin-top: 2em;
+            margin-bottom: 0.7em;
+            color: #8a817c;
+        }
+        .bio-list {
+            font-size: 1em;
+            color: #222;
+            margin: 1em 0 2em 0;
+            padding: 0;
+            list-style: none;
+        }
+        .bio-list li {
+            margin-bottom: 1em;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        .bio-label {
+            color: #8a817c;
+            font-weight: 600;
+            min-width: 160px;
+            flex-shrink: 0;
+        }
+        .bio-value {
+            font-weight: 400;
+            color: #222;
+            padding-left: 15px;
+            flex-grow: 1;
+            word-break: break-word;
+        }
+        /* Form Styling */
+        .bio-form label {
+            display: block;
+            margin-top: 1.3em;
+            font-weight: bold;
+            color: #222;
+            font-size: 1.1em;
+        }
+        .bio-form input, .bio-form textarea, .bio-form select {
+            width: 100%;
+            padding: 0.7em;
+            margin-top: 0.5em;
+            border: 1px solid #b5b5b5;
+            border-radius: 7px;
+            font-size: 1em;
+            background: #f6f6f6;
+            transition: border-color 0.2s;
+        }
+        .bio-form input:focus, .bio-form textarea:focus, .bio-form select:focus {
+            border-color: #8a817c;
+            outline: none;
+        }
+        .actions {
+            text-align: center;
+            margin-top: 1.3em;
+        }
+        .actions button, .actions a {
+            background: #222;
+            color: #fff;
+            border: none;
+            border-radius: 24px;
+            padding: 0.7em 2.2em;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 0 1em;
+            box-shadow: 0 2px 8px rgba(53,126,221,0.08);
+            transition: background 0.2s, transform 0.2s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .actions button:hover, .actions a:hover {
+            background: #8a817c;
+            transform: scale(1.05);
+        }
+        @media (max-width: 800px) {
+            .container { flex-direction: column; }
+            .left, .right { width: 100%; padding: 1.5em; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html">Bio-data</a>
+        <a href="resume.html">Resume</a>
+    </nav>
+    <div class="container">
+        <!-- Left Column: Profile (Form & Preview) -->
+        <div class="left">
+            <div id="bioProfileFormSection">
+                <form class="bio-form" id="bioProfileForm">
+                    <label>Profile Picture URL (optional):
+                        <input type="text" name="profilepic" placeholder="images/profile.jpg">
+                    </label>
+                    <label>Name:
+                        <input type="text" name="name" required>
+                    </label>
+                </form>
+            </div>
+            <div id="bioProfilePreviewSection" style="display:none;">
+                <img id="bioPreviewProfileImg" class="profile-img" src="images/profile.jpg" alt="Profile Picture" style="display:none;">
+                <div class="name" id="bioPreviewName"></div>
+            </div>
+        </div>
+        <!-- Right Column: Bio Details (Form & Preview) -->
+        <div class="right">
+            <div id="bioDetailsFormSection">
+                <form class="bio-form" id="bioDetailsForm">
+                    <label>Date of Birth:
+                        <input type="date" name="dob" required>
+                    </label>
+                    <label>Gender:
+                        <select name="gender" required>
+                            <option value="">Select</option>
+                            <option value="Female">Female</option>
+                            <option value="Male">Male</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </label>
+                    <label>Address:
+                        <textarea name="address" rows="2" required></textarea>
+                    </label>
+                    <label>Father's Name:
+                        <input type="text" name="father" required>
+                    </label>
+                    <label>Mother's Name:
+                        <input type="text" name="mother" required>
+                    </label>
+                    <label>Nationality:
+                        <input type="text" name="nationality" required>
+                    </label>
+                    <label>Languages Known (comma separated):
+                        <input type="text" name="languages" required>
+                    </label>
+                    <label>Marital Status:
+                        <select name="marital" required>
+                            <option value="">Select</option>
+                            <option value="Single">Single</option>
+                            <option value="Married">Married</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </label>
+                </form>
+                <div class="actions">
+                    <button type="button" onclick="previewBiodata()">Preview</button>
+                </div>
+            </div>
+            <div id="bioDetailsPreviewSection" style="display:none;">
+                <div class="section-title">Personal Details</div>
+                <ul class="bio-list" id="bioPreviewList"></ul>
+                <div class="actions">
+                    <button type="button" onclick="editBiodata()">Edit</button>
+                    <a href="resume.html" id="gotoResume">Go to Resume</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function previewBiodata() {
+            // Profile section
+            const profileForm = document.getElementById('bioProfileForm');
+            const profilepic = profileForm.profilepic.value.trim();
+            const name = profileForm.name.value;
+
+            // Details section
+            const detailsForm = document.getElementById('bioDetailsForm');
+            const dob = detailsForm.dob.value;
+            const gender = detailsForm.gender.value;
+            const address = detailsForm.address.value;
+            const father = detailsForm.father.value;
+            const mother = detailsForm.mother.value;
+            const nationality = detailsForm.nationality.value;
+            const languages = detailsForm.languages.value.split(',').map(l => l.trim()).filter(l => l);
+            const marital = detailsForm.marital.value;
+
+            // Fill Profile Preview
+            document.getElementById('bioPreviewName').textContent = name || '';
+            const img = document.getElementById('bioPreviewProfileImg');
+            if (profilepic) {
+                img.src = profilepic;
+                img.style.display = 'block';
+            } else {
+                img.style.display = 'none';
+            }
+
+            // Fill Details Preview
+            const ul = document.getElementById('bioPreviewList');
+            ul.innerHTML = '';
+            const items = [
+                {label: "Date of Birth", value: dob},
+                {label: "Gender", value: gender},
+                {label: "Address", value: address},
+                {label: "Father's Name", value: father},
+                {label: "Mother's Name", value: mother},
+                {label: "Nationality", value: nationality},
+                {label: "Languages Known", value: languages.join(', ')},
+                {label: "Marital Status", value: marital}
+            ];
+            items.forEach(item => {
+                const li = document.createElement('li');
+                li.innerHTML = `<span class="bio-label">${item.label}:</span><span class="bio-value">${item.value}</span>`;
+                ul.appendChild(li);
+            });
+
+            document.getElementById('bioProfileFormSection').style.display = 'none';
+            document.getElementById('bioDetailsFormSection').style.display = 'none';
+            document.getElementById('bioProfilePreviewSection').style.display = 'block';
+            document.getElementById('bioDetailsPreviewSection').style.display = 'block';
+        }
+        function editBiodata() {
+            document.getElementById('bioProfileFormSection').style.display = 'block';
+            document.getElementById('bioDetailsFormSection').style.display = 'block';
+            document.getElementById('bioProfilePreviewSection').style.display = 'none';
+            document.getElementById('bioDetailsPreviewSection').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

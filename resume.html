@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Resume - Anusha</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', Arial, sans-serif;
+            background: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        nav {
+            background: #222;
+            color: #fff;
+            padding: 1.5em 0;
+            text-align: center;
+        }
+        nav a {
+            color: #fff;
+            margin: 0 2em;
+            text-decoration: none;
+            font-weight: bold;
+            letter-spacing: 1px;
+            font-size: 1.1em;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            max-width: 900px;
+            margin: 2em auto;
+            background: #f9f7f2;
+            border-radius: 8px;
+            box-shadow: 0 6px 24px rgba(0,0,0,0.07);
+            overflow: hidden;
+            display: flex;
+            flex-direction: row;
+        }
+        .left {
+            background: #d1cdc7;
+            width: 34%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 2.5em 1em 2em 1em;
+        }
+        .right {
+            width: 66%;
+            padding: 2.5em 2em 2em 2em;
+            background: #f9f7f2;
+            box-sizing: border-box;
+        }
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 12px;
+            object-fit: cover;
+            margin-bottom: 2em;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.14);
+            border: 6px solid #fff;
+            background: #eee;
+        }
+        .name {
+            font-size: 2.4em;
+            font-weight: 700;
+            margin-bottom: 0.3em;
+            text-align: center;
+            letter-spacing: 1.5px;
+        }
+        .contact-info {
+            text-align: center;
+            color: #444;
+            font-size: 1em;
+            margin-bottom: 2em;
+        }
+        .section-title {
+            font-weight: 700;
+            font-size: 1.1em;
+            letter-spacing: 1px;
+            margin-top: 2em;
+            margin-bottom: 0.7em;
+            color: #8a817c;
+        }
+        .subsection-title {
+            font-weight: 700;
+            font-size: 1em;
+            margin-bottom: 0.4em;
+            color: #222;
+        }
+        .section-content, ul {
+            font-size: 0.98em;
+            color: #222;
+            margin-bottom: 1em;
+            margin-top: 0;
+        }
+        ul {
+            padding-left: 1.2em;
+        }
+        li {
+            margin-bottom: 0.5em;
+        }
+        .actions {
+            text-align: center;
+            margin-top: 1.3em;
+        }
+        .actions button {
+            background: #222;
+            color: #fff;
+            border: none;
+            border-radius: 24px;
+            padding: 0.7em 2.2em;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 0 1em;
+            box-shadow: 0 2px 8px rgba(53,126,221,0.08);
+            transition: background 0.2s, transform 0.2s;
+        }
+        .actions button:hover {
+            background: #8a817c;
+            transform: scale(1.05);
+        }
+        /* Form Styling */
+        .resume-form label {
+            display: block;
+            margin-top: 1.3em;
+            font-weight: bold;
+            color: #222;
+            font-size: 1.1em;
+        }
+        .resume-form input, .resume-form textarea {
+            width: 100%;
+            padding: 0.7em;
+            margin-top: 0.5em;
+            border: 1px solid #b5b5b5;
+            border-radius: 7px;
+            font-size: 1em;
+            background: #f6f6f6;
+            transition: border-color 0.2s;
+        }
+        .resume-form input:focus, .resume-form textarea:focus {
+            border-color: #8a817c;
+            outline: none;
+        }
+        @media (max-width: 800px) {
+            .container { flex-direction: column; }
+            .left, .right { width: 100%; padding: 1.5em; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html">Bio-data</a>
+        <a href="resume.html">Resume</a>
+    </nav>
+    <div class="container">
+        <!-- Left Column: Profile/Contact (Form & Preview) -->
+        <div class="left">
+            <div id="profileFormSection">
+                <form class="resume-form" id="resumeForm">
+                    <label>Profile Picture URL (optional):
+                        <input type="text" name="profilepic" placeholder="images/profile.jpg">
+                    </label>
+                    <label>Name:
+                        <input type="text" name="name" required>
+                    </label>
+                    <label>Address:
+                        <input type="text" name="address" required>
+                    </label>
+                    <label>Email:
+                        <input type="email" name="email" required>
+                    </label>
+                    <label>Phone:
+                        <input type="text" name="phone" required>
+                    </label>
+                </form>
+            </div>
+            <div id="profilePreviewSection" style="display:none;">
+                <img id="previewProfileImg" class="profile-img" src="images/profile.jpg" alt="Profile Picture" style="display:none;">
+                <div class="name" id="previewName"></div>
+                <div class="contact-info" id="previewContact"></div>
+            </div>
+        </div>
+        <!-- Right Column: Resume Details (Form & Preview) -->
+        <div class="right">
+            <div id="detailsFormSection">
+                <form class="resume-form" id="detailsForm">
+                    <div class="section-title">Professional Summary</div>
+                    <textarea name="summary" rows="4" required></textarea>
+                    <div class="section-title">Education (one per line)</div>
+                    <textarea name="education" rows="3" required></textarea>
+                    <div class="section-title">Work Experience (one per line)</div>
+                    <textarea name="experience" rows="3" required></textarea>
+                    <div class="section-title">Key Skills (comma separated)</div>
+                    <input type="text" name="skills" required>
+                </form>
+                <div class="actions">
+                    <button type="button" onclick="previewResume()">Preview</button>
+                </div>
+            </div>
+            <div id="detailsPreviewSection" style="display:none;">
+                <div class="section-title">Professional Summary</div>
+                <div class="section-content" id="previewSummary"></div>
+                <div class="section-title">Education</div>
+                <ul id="previewEducation"></ul>
+                <div class="section-title">Work Experience</div>
+                <ul id="previewExperience"></ul>
+                <div class="section-title">Key Skills</div>
+                <div class="section-content" id="previewSkills"></div>
+                <div class="actions">
+                    <button type="button" onclick="editResume()">Edit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Preview Resume
+        function previewResume() {
+            // Profile section
+            const resumeForm = document.getElementById('resumeForm');
+            const profilepic = resumeForm.profilepic.value.trim();
+            const name = resumeForm.name.value;
+            const address = resumeForm.address.value;
+            const email = resumeForm.email.value;
+            const phone = resumeForm.phone.value;
+
+            // Details section
+            const detailsForm = document.getElementById('detailsForm');
+            const summary = detailsForm.summary.value;
+            const education = detailsForm.education.value.split('\n').filter(e => e.trim());
+            const experience = detailsForm.experience.value.split('\n').filter(e => e.trim());
+            const skills = detailsForm.skills.value.split(',').map(s => s.trim()).filter(s => s);
+
+            // Fill Profile Preview
+            document.getElementById('previewName').textContent = name || '';
+            document.getElementById('previewContact').innerHTML =
+                `${address ? address + "<br>" : ""}${email ? email + "<br>" : ""}${phone ? phone : ""}`;
+            const img = document.getElementById('previewProfileImg');
+            if (profilepic) {
+                img.src = profilepic;
+                img.style.display = 'block';
+            } else {
+                img.style.display = 'none';
+            }
+
+            // Fill Details Preview
+            document.getElementById('previewSummary').textContent = summary;
+            const fillList = (id, arr) => {
+                const ul = document.getElementById(id);
+                ul.innerHTML = '';
+                arr.forEach(item => {
+                    const li = document.createElement('li');
+                    li.textContent = item;
+                    ul.appendChild(li);
+                });
+            };
+            fillList('previewEducation', education);
+            fillList('previewExperience', experience);
+            document.getElementById('previewSkills').textContent = skills.join(', ');
+
+            // Show Preview, Hide Forms
+            document.getElementById('profileFormSection').style.display = 'none';
+            document.getElementById('detailsFormSection').style.display = 'none';
+            document.getElementById('profilePreviewSection').style.display = 'block';
+            document.getElementById('detailsPreviewSection').style.display = 'block';
+        }
+        // Edit Resume
+        function editResume() {
+            document.getElementById('profileFormSection').style.display = 'block';
+            document.getElementById('detailsFormSection').style.display = 'block';
+            document.getElementById('profilePreviewSection').style.display = 'none';
+            document.getElementById('detailsPreviewSection').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
